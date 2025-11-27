@@ -307,14 +307,14 @@ EOF
         cp "$INSTALL_DIR/config/docker_compose.toml" \
            "$INSTALL_DIR/config/docker_compose.toml.backup"
 
-        # Обновляем пароли и ключи
-        sed -i "s/password = \"db_pass\"/password = \"$DB_PASSWORD\"/" \
+        # Обновляем пароли и ключи (используем | как разделитель для sed)
+        sed -i "s|password = \"db_pass\"|password = \"$DB_PASSWORD\"|" \
             "$INSTALL_DIR/config/docker_compose.toml"
-        sed -i "s/admin_api_key = \"test_admin\"/admin_api_key = \"$ADMIN_API_KEY\"/" \
+        sed -i "s|admin_api_key = \"test_admin\"|admin_api_key = \"$ADMIN_API_KEY\"|" \
             "$INSTALL_DIR/config/docker_compose.toml"
-        sed -i "s/jwt_secret = \"secret\"/jwt_secret = \"$JWT_SECRET\"/" \
+        sed -i "s|jwt_secret = \"secret\"|jwt_secret = \"$JWT_SECRET\"|" \
             "$INSTALL_DIR/config/docker_compose.toml"
-        sed -i "s/master_enc_key = \".*\"/master_enc_key = \"$MASTER_ENC_KEY\"/" \
+        sed -i "s|master_enc_key = \".*\"|master_enc_key = \"$MASTER_ENC_KEY\"|" \
             "$INSTALL_DIR/config/docker_compose.toml"
     fi
 
